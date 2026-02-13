@@ -9,9 +9,9 @@ if(NOT EXISTS "${LIBXR_DIR}/CMakeLists.txt")
 endif()
 
 # LibXR platform/driver selection
-set(LIBXR_SYSTEM None CACHE STRING "LibXR system backend")
-set(LIBXR_DRIVER hpm CACHE STRING "LibXR driver backend")
-set(LIBXR_NO_EIGEN True CACHE BOOL "Disable Eigen for embedded targets")
+set(LIBXR_SYSTEM None)
+set(LIBXR_DRIVER hpm)
+set(LIBXR_NO_EIGEN True)
 
 # Optional XRobot modules
 if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Modules")

@@ -24,5 +24,18 @@ project(user_app)
 sdk_app_inc(inc)
 sdk_app_src(src/main.cpp)
 
+# Debugging profile:
+# - keep application entry source easy to debug
+# - allow LibXR to stay optimized for timing/size
+string(TOLOWER "${CMAKE_BUILD_TYPE}" _app_build_type)
+if(_app_build_type STREQUAL "debug")
+  if(TARGET app)
+    target_compile_options(app PRIVATE
+        $<$<COMPILE_LANGUAGE:CXX>:-O0>
+        $<$<COMPILE_LANGUAGE:CXX>:-g3>
+    )
+  endif()
+endif()
+
 # Add LibXR integration
 include(${CMAKE_CURRENT_LIST_DIR}/cmake/LibXR.CMake)
