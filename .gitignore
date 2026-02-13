@@ -1,6 +1,7 @@
-# Build directories
+# Build output directories
 /build/
 /build_test/
+/debug/
 /out/
 /bin/
 /lib/
@@ -12,11 +13,16 @@
 /compile_commands.json
 /Makefile
 /install_manifest.txt
+/CMakeUserPresets.json
 
-# Ninja
+# Ninja generated files
 /.ninja_deps
 /.ninja_log
 /build.ninja
+
+# HPM localized SDK artifacts
+/CMakeLists.txt.localized.bak
+/hpm_sdk_localized_for_*/
 
 # Object and binary files
 *.o
@@ -45,3 +51,4 @@
 *.swo
 .DS_Store
 Thumbs.db
+.cache/
