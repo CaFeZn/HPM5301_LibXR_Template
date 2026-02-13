@@ -5,15 +5,43 @@
  *
  */
 
-#include <stdio.h>
 #include "board.h"
+#include "hpm_gpio.hpp"
+#include "hpm_timebase.hpp"
+#include "thread.hpp"
 
-int main(void)
-{
-    board_init();
+using namespace LibXR;
 
-    while(1) {
-        ;
-    }
-    return 0;
+uint32_t i = 0;
+
+int main(void) {
+	board_init();
+
+	HPMTimebase timebase;
+	(void)timebase;
+
+	HPMGPIO LED(BOARD_LED_GPIO_CTRL, BOARD_LED_GPIO_INDEX, BOARD_LED_GPIO_PIN);
+	LED.SetConfig({GPIO::Direction::OUTPUT_PUSH_PULL, GPIO::Pull::NONE});
+
+	// HPMGPIO	   button(BOARD_APP_GPIO_CTRL, BOARD_APP_GPIO_INDEX, BOARD_APP_GPIO_PIN, BOARD_APP_GPIO_IRQ);
+	// const auto trigger =
+	// 	(BOARD_BUTTON_PRESSED_VALUE != 0) ? GPIO::Direction::RISING_INTERRUPT : GPIO::Direction::FALL_INTERRUPT;
+	// button.SetConfig({trigger, GPIO::Pull::NONE});
+	// button.RegisterCallback(
+	// 	Callback<>::Create([](bool, HPMGPIO* led_gpio) { led_gpio->Write(!led_gpio->Read()); }, &led));
+	// button.EnableInterrupt();
+	// intc_m_enable_irq_with_priority(BOARD_APP_GPIO_IRQ, 5);
+
+
+
+	while (1) {
+		// Delay 1 second with LibXR thread sleep API.
+		LED.Write(true);
+		LibXR::Thread::Sleep(1000);
+		i++;
+		LED.Write(false);
+		LibXR::Thread::Sleep(1000);
+	}
+
+	return 0;
 }
