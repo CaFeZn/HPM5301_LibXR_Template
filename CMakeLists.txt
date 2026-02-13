@@ -23,3 +23,6 @@ project(user_app)
 
 sdk_app_inc(inc)
 sdk_app_src(src/main.cpp)
+
+# Add LibXR integration
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/LibXR.CMake)
