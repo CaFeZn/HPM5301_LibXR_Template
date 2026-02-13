@@ -8,4 +8,4 @@ find_package(hpm-sdk REQUIRED HINTS $ENV{HPM_SDK_BASE})
 project(user_app)
 
 sdk_app_inc(inc)
-sdk_app_src(src/main.c)
+sdk_app_src(src/main.cpp)
