@@ -13,6 +13,7 @@
 using namespace LibXR;
 
 uint32_t i = 0;
+uint32_t button_level = 0;
 
 int main(void) {
 	board_init();
@@ -20,8 +21,13 @@ int main(void) {
 	HPMTimebase timebase;
 	(void)timebase;
 
+	LibXR::Thread::Sleep(3000);
+
 	HPMGPIO LED(BOARD_LED_GPIO_CTRL, BOARD_LED_GPIO_INDEX, BOARD_LED_GPIO_PIN);
 	LED.SetConfig({GPIO::Direction::OUTPUT_PUSH_PULL, GPIO::Pull::NONE});
+
+	HPMGPIO BUTTON(BOARD_APP_GPIO_CTRL, BOARD_APP_GPIO_INDEX, BOARD_APP_GPIO_PIN);
+	BUTTON.SetConfig({GPIO::Direction::INPUT,GPIO::Pull::NONE});
 
 	// HPMGPIO	   button(BOARD_APP_GPIO_CTRL, BOARD_APP_GPIO_INDEX, BOARD_APP_GPIO_PIN, BOARD_APP_GPIO_IRQ);
 	// const auto trigger =
@@ -36,11 +42,14 @@ int main(void) {
 
 	while (1) {
 		// Delay 1 second with LibXR thread sleep API.
-		LED.Write(true);
+
+		// LED.Write(true);
 		LibXR::Thread::Sleep(1000);
 		i++;
-		LED.Write(false);
-		LibXR::Thread::Sleep(1000);
+		LED.Write(!LED.Read());
+		button_level = BUTTON.Read();
+		// LED.Write(false);
+		// LibXR::Thread::Sleep(1000);
 	}
 
 	return 0;

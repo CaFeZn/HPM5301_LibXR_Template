@@ -52,3 +52,7 @@
 .DS_Store
 Thumbs.db
 .cache/
+
+# OZone
+*.jdebug
+*.jdebug.user
