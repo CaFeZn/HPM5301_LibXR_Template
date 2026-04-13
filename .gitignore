@@ -1,32 +1,40 @@
-# Build output directories
+# Build directories
 /build/
+/build_*/
 /build_test/
+/cmake-build-*/
 /debug/
+/Debug/
+/Release/
+/RelWithDebInfo/
+/MinSizeRel/
 /out/
 /bin/
 /lib/
 
-# CMake generated files
-/CMakeFiles/
-/CMakeCache.txt
-/cmake_install.cmake
-/compile_commands.json
-/Makefile
-/install_manifest.txt
-/CMakeUserPresets.json
-
-# Ninja generated files
-/.ninja_deps
-/.ninja_log
-/build.ninja
+# CMake / Ninja generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+CTestTestfile.cmake
+Testing/
+Makefile
+install_manifest.txt
+CMakeUserPresets.json
+.ninja_deps
+.ninja_log
+build.ninja
+rules.ninja
 
 # HPM localized SDK artifacts
 /CMakeLists.txt.localized.bak
 /hpm_sdk_localized_for_*/
 
-# Object and binary files
+# Native build outputs
 *.o
 *.obj
+*.obj.d
 *.a
 *.lib
 *.so
@@ -37,22 +45,25 @@
 *.map
 *.hex
 *.bin
+*.lst
 
-# Debug / profiling outputs
+# Coverage / profiling outputs
 *.dSYM/
 *.gcda
 *.gcno
 *.gcov
 
-# Editors and OS files
-.vscode/
-.idea/
+# Editor / IDE state
+/.cache/
+/.idea/
+/.vscode/
 *.swp
 *.swo
-.DS_Store
-Thumbs.db
-.cache/
 
-# OZone
+# Segger Ozone
 *.jdebug
 *.jdebug.user
+
+# OS files
+.DS_Store
+Thumbs.db
