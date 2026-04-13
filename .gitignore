@@ -30,6 +30,8 @@ rules.ninja
 # HPM localized SDK artifacts
 /CMakeLists.txt.localized.bak
 /hpm_sdk_localized_for_*/
+!/hpm_sdk_localized_for_hpm5301evklite/
+!/hpm_sdk_localized_for_hpm5301evklite/**
 
 # Native build outputs
 *.o
